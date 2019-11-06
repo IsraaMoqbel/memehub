@@ -1,6 +1,8 @@
 import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
+import "firebase/storage";
+import "firebase/firestore";
 
 const env = require('./config.json')
 const config = {
@@ -16,6 +18,8 @@ class Firebase {
     app.initializeApp(config);
     this.auth = app.auth();
     this.db = app.database();
+    this.fStorage = app.storage();
+    this.fireStore = app.firestore();
   }
   // *** Auth API ***
   doCreateUserWithEmailAndPassword = (email, password) =>
@@ -65,5 +69,21 @@ class Firebase {
     // *** User API ***
     user = uid => this.db.ref(`users/${uid}`);
     users = () => this.db.ref('users');
+
+    // *** Meme API ***
+    meme = id => this.db.ref(`memes/${id}`);
+    memes = () => this.db.ref('memes');
+
+    accessStorage = () => this.fStorage.ref("images");
+    addToStorage = (imageName) => this.fStorage.ref(`images/${imageName}`);
+
+    // *** Firestore API ***
+    // *** User API ***
+    userFirestore = uid => this.fireStore.collection(`users/${uid}`);
+    usersFirestore = () => this.fireStore.collection('users');
+
+    // *** Meme API ***
+    memesFirestore = () => this.fireStore.collection('memes');
+
 }
 export default Firebase;

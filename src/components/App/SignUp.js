@@ -8,7 +8,7 @@ import { compose } from 'recompose';
 const SignUpPage = () => (
   <div>
     <h1>SignUp</h1>
-       <SignUpForm />
+      <SignUpForm />
   </div>
 );
 
@@ -31,9 +31,7 @@ class SignUpFormBase extends Component {
   onSubmit = event => {
     const { username, email, passwordOne, isAdmin } = this.state;
     const roles = {};
-    if (isAdmin) {
-      roles[ROLES.ADMIN] = ROLES.ADMIN;
-    }
+    isAdmin ? roles[ROLES.ADMIN] = ROLES.ADMIN : roles[ROLES.USER] = ROLES.USER
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
@@ -55,16 +53,13 @@ class SignUpFormBase extends Component {
       });
     event.preventDefault();
   }
-  onChangeCheckbox = event => {
-    this.setState({ [event.target.name]: event.target.checked });
-  };
+
   render() {
     const {
       username,
       email,
       passwordOne,
       passwordTwo,
-      isAdmin,
       error,
     } = this.state;
     
@@ -104,15 +99,6 @@ class SignUpFormBase extends Component {
           type="password"
           placeholder="Confirm Password"
         />
-        <label>
-          Admin:
-          <input
-            name="isAdmin"
-            type="checkbox"
-            checked={isAdmin}
-            onChange={this.onChangeCheckbox}
-          />
-        </label>
         <button disabled={isInvalid} type="submit">
           Sign Up
         </button>

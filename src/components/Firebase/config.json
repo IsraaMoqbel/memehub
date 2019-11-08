@@ -1,0 +1,8 @@
+{
+  "REACT_APP_API_KEY":"AIzaSyAWFVe4SInsL8YsjwzqYveRNUtcaG_l2Jo",
+  "REACT_APP_AUTH_DOMAIN":"friendlychat-82846.firebaseapp.com",
+  "REACT_APP_DATABASE_URL":"https://friendlychat-82846.firebaseio.com",
+  "REACT_APP_PROJECT_ID":"friendlychat-82846",
+  "REACT_APP_STORAGE_BUCKET":"friendlychat-82846.appspot.com",
+  "REACT_APP_MESSAGING_SENDER_ID":"117569718211"
+}

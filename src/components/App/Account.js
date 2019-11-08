@@ -55,11 +55,11 @@ class AccountPage extends Component {
                   authUser={authUser}
                   toggle={this.toggle}/>
                 }
-                <section style={{margin:'60px'}}>
+                <section >
                     { this.state.loading ? <Dots /> :
                       this.state.memesList.length > 0 ? <React.Fragment>
                       <p className="title" style={{ marginLeft:30, fontWeight:'bold'}}>Latest added memes</p>
-                      {this.state.memesList.map(doc => <img src={doc.url} alt={doc.title} key={doc.timeUploded}/>)}
+                      {this.state.memesList.map(doc => <img src={doc.url} alt={doc.title} key={doc.timeUploded} className="meme"/>)}
                       </React.Fragment> : <h3 className="title">Oops! no memes yet! {this.state.error}</h3>
                     }
                 </section>

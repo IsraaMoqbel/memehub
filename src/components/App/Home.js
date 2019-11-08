@@ -45,7 +45,7 @@ class HomePage extends Component {
         <section>
         { this.state.loading ? <Dots /> :
           this.state.memesList.length > 0 ? <React.Fragment>
-          <p className="title" style={{marginLeft:30, fontWeight:'bold'}}>Latest added memes</p>
+          <p className="title emoji-party" style={{marginLeft:30, fontWeight:'bold'}}>Latest added memes</p>
           <div style={{display:'flex', flexWrap:'wrap', justifyContent:'center'}}>
             {this.state.memesList.map(doc => <img src={doc.url} alt={doc.title} key={doc.timeUploded}/>)}
           </div>

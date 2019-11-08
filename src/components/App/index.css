@@ -76,6 +76,11 @@ button:disabled, button:disabled:hover {
   align-content: center;
   font-size: large;
   margin-top: 5px;
+  font-size: 0.8em;
+}
+.signout::after {
+  content:'\1F44B';
+  font-size: x-large;
 }
 
 .add-btn {
@@ -115,5 +120,26 @@ progress {
 img, .meme {
   resize: both;
   height: 400px;
-  margin:10px
+  margin:10px;
+  max-width: 100vw;
+}
+
+.PS1, .PS2 {
+  color:#4a6e01;
+font-size: small;
+/* margin: 5px; */
+}
+.PS2::after {
+  content:'\1F600';
+  font-size: large;
+}
+.PS1::after {
+  content:'\1F61D';
+  font-size: large;
+
+}
+
+.emoji-party::after {
+  content: '\1F973';
+  font-size: larger;
 }

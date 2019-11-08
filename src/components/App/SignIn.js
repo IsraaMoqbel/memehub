@@ -5,10 +5,11 @@ import { SignUpLink } from './SignUp';
 import { PasswordForgetLink } from './PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import './SignIn.css';
 
 const SignInPage = () => (
   <div>
-    <h1>SignIn</h1>
+    <h1 className="title">Sign in to Memehub</h1>
     <SignInForm />
     <PasswordForgetLink />
     <SignUpLink />
@@ -49,6 +50,7 @@ class SignInFormBase extends Component {
     const isInvalid = password === '' || email === '';
     return (
       <form onSubmit={this.onSubmit}>
+        {error && <p className="error">{error.message}</p>}
         <input
           name="email"
           value={email}
@@ -66,7 +68,6 @@ class SignInFormBase extends Component {
         <button disabled={isInvalid} type="submit">
           Sign In
         </button>
-        {error && <p>{error.message}</p>}
       </form>
     );
   }

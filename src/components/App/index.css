@@ -1,0 +1,119 @@
+body {
+  background-color: #314900;
+  background-attachment: fixed;
+
+}
+
+.App {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+  height: 100vh;
+}
+
+.title {
+  color: #feecca;
+}
+
+input, .custom-file-upload {
+  margin: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  align-self: center;
+  align-items: center;
+  border-width: 0px;
+  border-radius: 25px;
+  outline-style: none;
+  text-align: justify;
+  color: #395600;
+  background-color: #feecca;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 40%;
+  height: 25px;
+}
+input::placeholder {
+  color:#395600;
+}
+
+button {
+  background-color: transparent;
+  border-style: none;
+  color:#feecca;
+  font-size: 18px;
+  cursor: pointer;
+  margin:10px;
+}
+
+button:hover {
+  /* color:wheat; */
+  font-size: larger;
+}
+
+.error {
+  color:rgb(85, 24, 24);
+}
+
+form {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin:40px;
+}
+
+button:disabled, button:disabled:hover {
+  color:#AAA;
+  font-size: medium;
+  cursor: not-allowed;
+
+}
+
+.signout {
+  align-self: center;
+  text-align: center;
+  align-content: center;
+  font-size: large;
+  margin-top: 5px;
+}
+
+.add-btn {
+  background-color: #ffd27f;
+  color: rgb(68, 56, 0);
+  border-radius: 20px;
+  padding:10px
+}
+.btn {
+  background-color: #314900;
+  color:  #feecca;
+  border-radius: 20px;
+  padding:10px
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  cursor: pointer;
+  border-width: thin;
+  border-style: solid;
+  border-color: #426300;
+}
+
+.green {
+  color:#4a6e01;
+}
+
+progress {
+  /* height: auto; */
+  background-color: green;
+}
+
+img, .meme {
+  resize: both;
+  height: 400px;
+  margin:10px
+}

@@ -20,6 +20,7 @@ class Firebase {
     this.db = app.database();
     this.fStorage = app.storage();
     this.fireStore = app.firestore();
+    this.reaults = [];
   }
   // *** Auth API ***
   doCreateUserWithEmailAndPassword = (email, password) =>
@@ -83,7 +84,16 @@ class Firebase {
     usersFirestore = () => this.fireStore.collection('users');
 
     // *** Meme API ***
-    memesFirestore = () => this.fireStore.collection('memes');
+    memesFirestore = () => {
+      this.results = this.fireStore.collection('memes');
+
+      return this.fireStore.collection('memes');
+
+    } 
+
+    searchWithKeywords = (keywords)=> {
+      return this.memesFirestore().where("keywords", "array-contains-any", keywords)
+    } 
 
 }
 export default Firebase;

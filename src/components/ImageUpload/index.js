@@ -33,11 +33,9 @@ class ImageUpload extends Component {
         this.setState({ progress });
       },
       error => {
-        // Error function ...
         console.log(error);
       },
       () => {
-        // complete function ...
         this.props.firebase.accessStorage()
           .child(image.name)
           .getDownloadURL()
@@ -50,7 +48,7 @@ class ImageUpload extends Component {
               keywords: keywords.split(" "),
               public:false,
               timeUploded: Date.now(),
-              userId: this.props.authUser.uid
+              userId: (this.props.authUser && this.props.authUser.uid) || null
             });
           })
           .then(()=> {
@@ -59,7 +57,7 @@ class ImageUpload extends Component {
               keywords:'',
               title:''})
           })
-          .catch(e=>console.log(e,'something is wrong!!!'))
+          .catch(e=>alert(e,'something is wrong!!!'))
       }
     );
   };
@@ -67,15 +65,15 @@ class ImageUpload extends Component {
     return (
       <div className="center">
           <br/>
-          <h2 className="green-text">React Firebase Image Uploader</h2>
+          <h2 className="green">Upload a new meme</h2>
         <br />
         <div className="file-field input-field">
+          <label className="custom-file-upload validate">
+            <input type="file" onChange={this.handleChange}/>
+            Upload image
+          </label>
           <div className="file-path-wrapper">
             <input className="file-path validate" type="text" value={this.state.title} placeholder="Title" name="title" onChange={(e)=> this.onChange(e)}/>
-          </div>
-          <div className="btn">
-            <span>File</span>
-            <input type="file" onChange={this.handleChange} />
           </div>
           <div className="file-path-wrapper">
             <input className="file-path validate" type="text" value={this.state.keywords} placeholder="keywords" name="keywords" onChange={(e)=> this.onChange(e)}/>
@@ -89,20 +87,20 @@ class ImageUpload extends Component {
           Upload
         </button>
         <br />
-        <br />
-        <br/>
-        <br/>
+
         <div className="row">
-          <progress value={this.state.progress} max="100" className="progress" />
+          {this.state.progress > 0 && 
+            <progress value={this.state.progress} max="100" className="progress" />
+          }
         </div>
         <br />
         <br />
-        <img
-          src={this.state.url || "https://via.placeholder.com/400x300"}
-          alt="Uploaded Images"
-          height="300"
-          width="400"
-        />
+        {this.state.url && 
+          <img
+            src={this.state.url}
+            alt="Uploaded"
+          />
+        }
       </div>
     );
   }

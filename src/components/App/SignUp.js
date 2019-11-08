@@ -7,7 +7,8 @@ import { compose } from 'recompose';
 
 const SignUpPage = () => (
   <div>
-    <h1>SignUp</h1>
+    <h1 className="title">Sign up to Memehub</h1>
+    {/* <p className="title">Signing up to Memehub will allow you to search the memes you upload easily.</p> */}
       <SignUpForm />
   </div>
 );
@@ -35,7 +36,6 @@ class SignUpFormBase extends Component {
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
-        // Create a user in your Firebase realtime database
         return this.props.firebase
           .user(authUser.user.uid)
           .set({
@@ -102,7 +102,7 @@ class SignUpFormBase extends Component {
         <button disabled={isInvalid} type="submit">
           Sign Up
         </button>
-        {error && <p>{error.message}</p>}
+        {error && <p className="error">{error.message}</p>}
       </form>
     );
   }
@@ -114,7 +114,7 @@ const SignUpForm = compose(
 )(SignUpFormBase);
 
 const SignUpLink = () => (
-  <p>
+  <p className="title">
     Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
   </p>
 );

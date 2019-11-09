@@ -11,7 +11,7 @@
   outline-style: none;
   text-align: justify;
   color: #395600;
-  background-color: #feecca;
+  background-color: white;
 }
 .search-input:focus {
   border-radius: 10px;
@@ -28,7 +28,7 @@
   align-items: center;
   justify-content: center;
   height: 30px;
-  background-color: #feecca;
+  background-color: white;
   margin: auto;
 }
 .search-div:hover, .search-div:focus {

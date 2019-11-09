@@ -23,7 +23,7 @@
 /* Modal Content */
 .modal-content {
   display: flex;
-  background-color: #feecca;
+  background-color: white;
   margin: auto;
   padding: 20px;
   width: 70%;

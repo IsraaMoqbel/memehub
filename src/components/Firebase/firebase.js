@@ -84,12 +84,7 @@ class Firebase {
     usersFirestore = () => this.fireStore.collection('users');
 
     // *** Meme API ***
-    memesFirestore = () => {
-      this.results = this.fireStore.collection('memes');
-
-      return this.fireStore.collection('memes');
-
-    } 
+    memesFirestore = () => this.fireStore.collection('memes');
 
     searchWithKeywords = (keywords)=> {
       return this.memesFirestore().where("keywords", "array-contains-any", keywords)

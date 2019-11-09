@@ -13,7 +13,7 @@ body {
 }
 
 .title {
-  color: #feecca;
+  color: white;
 }
 
 input, .custom-file-upload {
@@ -27,7 +27,7 @@ input, .custom-file-upload {
   outline-style: none;
   text-align: justify;
   color: #395600;
-  background-color: #feecca;
+  background-color: white;
   margin-bottom: 10px;
   margin-top: 10px;
   width: 40%;
@@ -40,7 +40,7 @@ input::placeholder {
 button {
   background-color: transparent;
   border-style: none;
-  color:#feecca;
+  color:white;
   font-size: 18px;
   cursor: pointer;
   margin:10px;
@@ -84,14 +84,14 @@ button:disabled, button:disabled:hover {
 }
 
 .add-btn {
-  background-color: #ffd27f;
+  background-color: white;
   color: rgb(68, 56, 0);
   border-radius: 20px;
   padding:10px
 }
 .btn {
   background-color: #314900;
-  color:  #feecca;
+  color:  white;
   border-radius: 20px;
   padding:10px
 }
@@ -126,8 +126,8 @@ img, .meme {
 
 .PS1, .PS2 {
   color:#4a6e01;
-font-size: small;
-/* margin: 5px; */
+  font-size: small;
+  margin:0;
 }
 .PS2::after {
   content:'\1F600';

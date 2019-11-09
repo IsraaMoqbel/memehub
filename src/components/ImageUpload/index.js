@@ -66,11 +66,10 @@ class ImageUpload extends Component {
       <div className="center">
           <br/>
           <h2 className="green">Upload a new meme</h2>
-          <p className="PS1">PS: uploaded memes will not appear in main page untill we make sure they are really funny!
+          <p className="PS1">PS: uploaded meme will not appear immediately in the main page cuz we have to make sure it's really funny!
           </p>
           <p className="PS2">
-          Just kidding! <i className="far fa-grin-tongue-wink"></i> we just try to make sure that it's not an inappropriate image! <br/>
-           It will still be in your account page if you are signed in!
+           But you can still find it in the search results and it will be in your account page if you are signed in!
           </p>
         <br />
         <div className="file-field input-field">

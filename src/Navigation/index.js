@@ -60,7 +60,10 @@ const NavigationNonAuth = (props) => (
         <SearchBar handleChange={props.handleChange} text={props.text} memesList={props.memesList}
            handleKeyDown={props.handleKeyDown}/>
       </Link>
-      <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+    </li>
+    <li>
+      <Link to={ROUTES.SIGN_IN}>Log in</Link>
+
     </li>
   </ul>
 );

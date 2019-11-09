@@ -25,8 +25,10 @@ li:hover {
 
 a {
   text-decoration: none;
-  color: #feecca;
+  color: white;
   font-size: larger;
+  align-self: baseline;
+
 }
 a:hover {
   color: yellowgreen;

@@ -3,75 +3,64 @@ import * as ROLES from '../../constants/roles';
 import { withAuthorization } from '../Session';
 import { withFirebase } from '../Firebase';
 import { compose } from 'recompose';
-// add search input by keyword in home page, landing page, & account page
-// style the whole thing
-// add feature for making new memes public
-// style meme card 
+
 class AdminPage extends Component {
   state = {
     loading: false,
     users: [],
+    memesList:[],
+    error:''
   };
   componentDidMount() {
+    this.getUnpublicizedMemes();
+  }
+  getUnpublicizedMemes = ()=> {
     this.setState({ loading: true });
     this.props.firebase.memesFirestore().where("public", "==", false).get()
-    .then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc) {
-          // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, " => ", doc.data());
+    .then((querySnapshot)=> {
+      querySnapshot.forEach((doc)=> {
+          this.setState({memesList:[...this.state.memesList, {id:doc.id, url:doc.data()} ]})
       });
+      this.setState({loading:false})
   })
-  .catch(function(error) {
+  .catch((error)=> {
       console.log("Error getting documents: ", error);
+      this.setState({loading:false, error})
   });
-
-  this.props.firebase.users().on('value', snapshot => {
-    const usersObject = snapshot.val();
-    const usersList = Object.keys(usersObject).map(key => ({
-      ...usersObject[key],
-      uid: key,
-    }));
-    this.setState({
-      users: usersList,
-      loading: false,
-    });
-  });
+  }
+  makeImgPublic = (id) => {
+    this.props.firebase.memesFirestore().doc(id).update({
+      "public": true,
+    })
+    .then(()=> {
+        console.log("Document successfully updated!")
+        this.getUnpublicizedMemes();
+    })
+    .catch(err=> alert(err))
   }
 
   componentWillUnmount() {
     this.props.firebase.users().off();
   }
   render() {
-    const { users, loading } = this.state;
-
     return (
       <div>
-        <h1>Admin</h1>
-        
-        {loading && <div>Loading ...</div>}
-        <UserList users={users} />
+        <h1 className="title">Admin</h1>
+        <section>
+        { 
+          this.state.memesList.length > 0 ? <React.Fragment>
+          <p className="title emoji-party" style={{marginLeft:30, fontWeight:'bold'}}>Latest added memes</p>
+          <div style={{display:'flex', flexWrap:'wrap', justifyContent:'center'}}>
+            {this.state.memesList.map(doc => <img src={doc.url.url} alt={doc.url.title} key={doc.url.url} onClick={()=>this.makeImgPublic(doc.id)}/>)}
+          </div>
+          </React.Fragment> : <h3 className="title">Oops! no new memes!</h3>
+        }
+        </section>
       </div>
     );
   }
 }
 
-const UserList = ({ users }) => (
-  <ul>
-    {users.length>0 ? users.map(user => (
-      <li key={user.uid}>
-        <span>
-          <strong>ID:</strong> {user.uid}
-        </span>
-        <span>
-          <strong>E-Mail:</strong> {user.email}
-        </span>
-        <span>
-          <strong>Username:</strong> {user.username}
-        </span>
-      </li>
-    )): <h3>No users yet!</h3>}
-  </ul>
-);
 const condition = authUser => authUser && !!authUser.roles[ROLES.ADMIN];
 
 export default compose(

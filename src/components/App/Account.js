@@ -15,7 +15,8 @@ class AccountPage extends Component {
     error:''
   }
   getUserMemes= () => {
-    this.props.firebase.memesFirestore().where("userId", "==", this.props.authUser.uid).orderBy("timeUploded", "desc").get()
+    this.props.firebase.memesFirestore().where("userId", "==", this.props.authUser.uid)
+    .orderBy("timeUploded", "desc").get()
     .then((querySnapshot)=> {
       querySnapshot.forEach((doc)=> {
           this.setState({memesList:[...this.state.memesList, doc.data()]})
@@ -44,11 +45,13 @@ class AccountPage extends Component {
         {authUser => {
           return (
             <div>
-              <h3 className="title">Account: {authUser.email}</h3>
+              <h3 className="title">Hello {authUser.username}</h3>
               {this.state.changePassword && <PasswordChangeForm />}
 
               <div>
-                <button onClick={()=>this.toggle()} className="add-btn">Add a new meme</button>
+                <button onClick={()=>this.toggle()} className="add-btn">
+                  <h3 className="add-txt">Add a new meme</h3>
+                </button>
                 {this.state.showModal && 
                   <Modal 
                   modalComponent={<ImageUpload authUser={authUser}/>}
@@ -58,7 +61,7 @@ class AccountPage extends Component {
                 <section >
                     { this.state.loading ? <Dots /> :
                       this.state.memesList.length > 0 ? <React.Fragment>
-                      <p className="title" style={{ marginLeft:30, fontWeight:'bold'}}>Latest added memes</p>
+                      <p className="title" style={{ marginLeft:30, fontWeight:'400'}}>Latest memes you added >>></p>
                       {this.state.memesList.map(doc => <img src={doc.url} alt={doc.title} key={doc.timeUploded} className="meme"/>)}
                       </React.Fragment> : <h3 className="title">Oops! no memes yet! {this.state.error}</h3>
                     }

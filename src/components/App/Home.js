@@ -39,7 +39,9 @@ class HomePage extends Component {
         return (
           <div>
             <Landing />
-            <button onClick={()=>this.toggle()} className="add-btn">Add a new meme</button>
+            <button onClick={()=>this.toggle()} className="add-btn">
+              <h3 className="add-txt">Add a new meme</h3>
+              </button>
             {this.state.showModal && 
               <Modal 
               modalComponent={<ImageUpload authUser={authUser}/>}
@@ -49,7 +51,7 @@ class HomePage extends Component {
             <section>
             { this.state.loading ? <Dots /> :
               this.state.memesList.length > 0 ? <React.Fragment>
-              <p className="title emoji-party" style={{marginLeft:30, fontWeight:'bold'}}>Latest added memes</p>
+              <p className="title emoji-party" style={{marginLeft:30, fontWeight:'400'}}>Latest added memes >>> </p>
               <div style={{display:'flex', flexWrap:'wrap', justifyContent:'center'}}>
                 {this.state.memesList.map(doc => <img src={doc.url} alt={doc.title} key={doc.timeUploded}/>)}
               </div>

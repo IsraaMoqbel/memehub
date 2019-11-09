@@ -85,9 +85,13 @@ button:disabled, button:disabled:hover {
 
 .add-btn {
   background-color: white;
-  color: rgb(68, 56, 0);
+  color: #233300;
   border-radius: 20px;
-  padding:10px
+  padding:10px;
+}
+
+.add-txt {
+  margin: 0px;
 }
 .btn {
   background-color: #314900;

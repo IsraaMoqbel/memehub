@@ -7,7 +7,6 @@ class ImageUpload extends Component {
     url: "",
     progress: 0,
     keywords:'',
-    title:''
   };
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -20,13 +19,12 @@ class ImageUpload extends Component {
   };
 
   handleUpload = () => {
-    const { image, keywords, title } = this.state;
+    const { image, keywords } = this.state;
     const uploadTask = this.props.firebase.addToStorage(image.name).put(image);
     uploadTask.on(
       "state_changed",
       snapshot => {
         console.log(snapshot)
-        // progress function ...
         const progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
@@ -43,7 +41,6 @@ class ImageUpload extends Component {
             this.setState({ url });
             this.props.firebase.memesFirestore()
             .add({
-              title,
               url,
               keywords: keywords.split(" "),
               public:false,
@@ -54,8 +51,8 @@ class ImageUpload extends Component {
           .then(()=> {
             this.setState({image: null,
               progress: 0,
-              keywords:'',
-              title:''})
+              keywords:''
+            })
           })
           .catch(e=>alert(e,'something is wrong!!!'))
       }
@@ -65,7 +62,7 @@ class ImageUpload extends Component {
     return (
       <div className="center">
           <br/>
-          <h2 className="green">Upload a new meme</h2>
+          <h2 className="green noMargin">Upload a new meme</h2>
           <p className="PS1">PS: uploaded meme will not appear immediately in the main page cuz we have to make sure it's really funny!
           </p>
           <p className="PS2">
@@ -78,16 +75,13 @@ class ImageUpload extends Component {
             Upload image
           </label>
           <div className="file-path-wrapper">
-            <input className="file-path validate" type="text" value={this.state.title} placeholder="Title" name="title" onChange={(e)=> this.onChange(e)}/>
-          </div>
-          <div className="file-path-wrapper">
             <input className="file-path validate" type="text" value={this.state.keywords} placeholder="keywords" name="keywords" onChange={(e)=> this.onChange(e)}/>
           </div>
 
         </div>
         <button
           onClick={this.handleUpload}
-          className="waves-effect waves-light btn"
+          className="waves-effect waves-light btn margin20"
         >
           Upload
         </button>
@@ -104,6 +98,7 @@ class ImageUpload extends Component {
           <img
             src={this.state.url}
             alt="Uploaded"
+            className="meme"
           />
         }
       </div>

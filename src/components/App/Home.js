@@ -52,7 +52,7 @@ class HomePage extends Component {
             { this.state.loading ? <Dots /> :
               this.state.memesList.length > 0 ? <React.Fragment>
               <p className="title emoji-party" style={{marginLeft:30, fontWeight:'400'}}>Latest added memes >>> </p>
-              <div style={{display:'flex', flexWrap:'wrap', justifyContent:'center'}}>
+              <div style={{display:'flex', flexWrap:'wrap', justifyContent:'center', margin:0, padding:0}}>
                 {this.state.memesList.map(doc => <img src={doc.url} alt={doc.title} key={doc.timeUploded}/>)}
               </div>
               </React.Fragment> : <h3 className="title">Oops! error getting memes!</h3>

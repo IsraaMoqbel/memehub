@@ -15,11 +15,14 @@ But you can still find it in the search results and it will be in your account p
 
 ### Inspiration
 This project is inspired by a friend of mine who always has just the perfect meme for every situation, I was so jealous of her ability to interact very fast using memes while I struggle googling the meme that I want!
+
+
 ![image](MemeHubInspiration.jpg)
 ![image](rasha.jpg)
 
-
 #### Any contribution is very welcomed :heart:
-with an origami gift made by me
+with an origami gift made by me :gift_heart:
+
+
 ![image](7.jpg)
 
